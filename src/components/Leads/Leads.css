@@ -1,0 +1,9 @@
+.Leads {
+  display: flex;
+  justify-content: center;
+}
+
+.Leads div {
+  margin-bottom: 0.625rem;
+  margin-right: 0.625rem;
+}
