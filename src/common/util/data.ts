@@ -20,5 +20,5 @@ export const uniqueLeadReducer = (key: LEAD_UNIQUE_KEY, caseInsensitive: boolean
     // entry date greater than or equal is preferred per AC
     return currentEntryDate <= nextEntryDate
       ? [...accumulator.slice(0, matchIndex), nextLead, ...accumulator.slice(matchIndex + 1, accumulator.length)]
-      : [...accumulator, nextLead];
+      : accumulator;
   };
