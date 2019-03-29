@@ -3,6 +3,7 @@ import './Leads.css';
 import { Lead, LEAD_UNIQUE_KEY } from '../../common/model/Lead';
 import { uniqueLeadReducer } from '../../common/util/data';
 import Loader from '../Loader';
+import LeadRow from './LeadRow';
 
 // stub for component props
 export interface ILeadsProps {}
@@ -40,25 +41,15 @@ class Leads extends React.Component<Props, State> {
       const { leads } = require('../../common/mocks/leads.json');
       const leadsWithUniqueIds = this._reduceToUniqueLeads(LEAD_UNIQUE_KEY.ID, leads);
       const uniqueLeads = this._reduceToUniqueLeads(LEAD_UNIQUE_KEY.EMAIL, leadsWithUniqueIds, true);
-      this.setState({
-        data: uniqueLeads,
-      })
-    }, 3000)
+      this.setState({ data: uniqueLeads });
+    }, 3000);
   }
 
   render() {
     const { data } = this.state;
     return data.length === 0
       ? <Loader />
-      : data.map(lead => {
-        return (
-          <div key={lead._id} className="Leads">
-            <div>{lead._id}</div>
-            <div>{lead.email}</div>
-            <div>{lead.entryDate}</div>
-          </div>
-        );
-      })
+      : data.map(lead => <LeadRow lead={lead} />);
   }
 }
 
